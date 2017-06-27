@@ -20,6 +20,8 @@
 #include <linux/sched.h>
 #include <linux/delay.h>
 
+#include <linux/mfd/arizona/control.h>
+
 #define CREATE_TRACE_POINTS
 #include <trace/events/regmap.h>
 
@@ -1449,6 +1451,8 @@ int _regmap_write(struct regmap *map, unsigned int reg,
 {
 	int ret;
 	void *context = _regmap_map_get_context(map);
+
+	arizona_control_regmap_hook(map, reg, &val);
 
 	if (!regmap_writeable(map, reg))
 		return -EIO;
