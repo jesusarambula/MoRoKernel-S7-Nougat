@@ -133,7 +133,7 @@ static ssize_t show_arizona_property(struct device *dev,
 	struct arizona_control *ctl = (struct arizona_control*)(attr);
 
 	if (ctl->value == -1)
-		ctl->ctlval = ctl->value = (snd_soc_read(codec, ctl->reg) & ctl->mask) >> ctl->shift;
+		ctl->ctlval = ctl->value = (codec->read(codec, ctl->reg) & ctl->mask) >> ctl->shift;
 
 	return sprintf(buf, "%d", ctl->value);
 };
@@ -157,12 +157,12 @@ static ssize_t store_arizona_property(struct device *dev,
 
 	ctl->value = val;
 
-	regval = snd_soc_read(codec, ctl->reg);
+	regval = codec->read(codec, ctl->reg);
 	regval &= ~ctl->mask;
 	regval |= ctl->hook(ctl) << ctl->shift;
 
 	ignore_next = 1;
-	snd_soc_write(codec, ctl->reg, regval);
+	codec->write(codec, ctl->reg, regval);
 
 	return count;
 };
