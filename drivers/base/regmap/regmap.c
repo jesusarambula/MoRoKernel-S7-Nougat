@@ -1452,9 +1452,7 @@ int _regmap_write(struct regmap *map, unsigned int reg,
 	int ret;
 	void *context = _regmap_map_get_context(map);
 
-	mutex_unlock(&map->mutex);
 	arizona_control_regmap_hook(map, reg, &val);
-	mutex_lock(&map->mutex);
 
 	if (!regmap_writeable(map, reg))
 		return -EIO;

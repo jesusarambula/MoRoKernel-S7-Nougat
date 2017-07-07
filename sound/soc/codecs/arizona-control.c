@@ -5,6 +5,7 @@
  * @Date	: June 2013 	- Arizona original implementation.
  * 		: December 2014	- Florida impl.
  * 		: August 2015 	- Clearwater impl.
+ *		: June 2017 	- Moon impl.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -77,9 +78,9 @@ struct arizona_control {
 
 #define _write(reg, regval)	\
 	ignore_next = true;	\
-	codec->write(codec, reg, regval);
+	snd_soc_write(codec, reg, regval);
 
-#define _read(reg) codec->read(codec, reg)
+#define _read(reg) snd_soc_read(codec, reg)
 
 static inline void _ctl_set(struct arizona_control *ctl, int val)
 {
@@ -146,9 +147,9 @@ static struct arizona_control ctls[] = {
 	/* Volumes */
 	
 	_ctl("hp_left_dvol", CTL_ACTIVE, ARIZONA_DAC_DIGITAL_VOLUME_1L,
-		ARIZONA_OUT1L_VOL_MASK, ARIZONA_OUT1L_VOL_SHIFT, __hp_volume),
+		ARIZONA_OUT1L_VOL_MASK, ARIZONA_OUT1L_VOL_SHIFT, __simple),
 	_ctl("hp_right_dvol", CTL_ACTIVE, ARIZONA_DAC_DIGITAL_VOLUME_1R, 
-		ARIZONA_OUT1R_VOL_MASK, ARIZONA_OUT1R_VOL_SHIFT, __hp_volume),
+		ARIZONA_OUT1R_VOL_MASK, ARIZONA_OUT1R_VOL_SHIFT, __simple),
 	
 	_ctl("hp_left_ivol", CTL_ACTIVE, ARIZONA_DAC_VOLUME_LIMIT_1L,
 		ARIZONA_OUT1L_VOL_LIM_MASK, ARIZONA_OUT1L_VOL_LIM_SHIFT, __delta),
