@@ -36,7 +36,7 @@ DEFCONFIG_S8FLAT=moro-flat-s8_defconfig
 DEFCONFIG_N8EDGE=moro-edge-n8_defconfig
 DEFCONFIG_N8FLAT=moro-flat-n8_defconfig
 
-export K_VERSION="v3.0"
+export K_VERSION="v3.0b1"
 export K_NAME="MoRoKernel"
 export REVISION="RC"
 export KBUILD_BUILD_VERSION="1"
