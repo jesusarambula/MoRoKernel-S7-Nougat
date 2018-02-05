@@ -863,6 +863,7 @@ struct dwc3 {
 	unsigned		three_stage_setup:1;
 	unsigned		adj_sof_accuracy:1;
 	unsigned		is_not_vbus_pad:1;
+	unsigned		start_config_issued:1;
 };
 
 /* -------------------------------------------------------------------------- */
