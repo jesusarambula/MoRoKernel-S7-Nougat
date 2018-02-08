@@ -72,6 +72,8 @@ source "drivers/staging/cptm1217/Kconfig"
 
 source "drivers/staging/ste_rmi4/Kconfig"
 
+source "drivers/staging/snappy/Kconfig"
+
 source "drivers/staging/nvec/Kconfig"
 
 source "drivers/staging/media/Kconfig"
